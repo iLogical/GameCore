@@ -16,6 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.6" />
     <PackageReference Include="Ultraviolet" Version="2020.4.0.4278" />
     <PackageReference Include="Ultraviolet.BASS" Version="2020.4.0.4278" />
     <PackageReference Include="Ultraviolet.FreeType2" Version="2020.4.0.4278" />

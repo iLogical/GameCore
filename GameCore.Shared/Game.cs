@@ -1,3 +1,4 @@
+using System;
 using Ultraviolet;
 using Ultraviolet.BASS;
 using Ultraviolet.Content;
@@ -6,31 +7,32 @@ using Ultraviolet.Graphics;
 using Ultraviolet.Graphics.Graphics2D;
 using Ultraviolet.Input;
 using Ultraviolet.OpenGL;
+using Ultraviolet.Platform;
 
 namespace GameCore
 {
-    public class Game : UltravioletApplication
+    public interface IGame : IDisposable
     {
-        public Game()
-            : base("iLogical", "GameCore")
-        { }
+        void Run();
+    }
+
+    public class Game : UltravioletApplication, IGame
+    {
+        private readonly IConfigurationManager _configurationManager;
+        private ContentManager _contentManager;
+        private SpriteBatch _spriteBatch;
+        private Texture2D _texture;
+        private KeyboardDevice KeyboardDevice => Ultraviolet.GetInput().GetKeyboard();
+        private IUltravioletWindow Window => Ultraviolet.GetPlatform().Windows.GetCurrent();
+
+        public Game(IConfigurationManager configurationManager) : base("iLogical", "GameCore")
+        {
+            _configurationManager = configurationManager;
+        }
 
         protected override UltravioletContext OnCreatingUltravioletContext()
         {
-            var configuration = new OpenGLUltravioletConfiguration();
-            configuration.Plugins.Add(new BASSAudioPlugin());
-            configuration.Plugins.Add(new FreeTypeFontPlugin());
-
-#if DEBUG
-            configuration.Debug = true;
-            configuration.DebugLevels = DebugLevels.Error | DebugLevels.Warning;
-            configuration.DebugCallback = (uv, level, message) =>
-            {
-                System.Diagnostics.Debug.WriteLine(message);
-            };
-#endif
-
-            return new OpenGLUltravioletContext(this, configuration);
+            return new OpenGLUltravioletContext(this, _configurationManager.BuildConfiguration());
         }
 
         protected override void OnInitialized()
@@ -50,17 +52,14 @@ namespace GameCore
 
         protected override void OnUpdating(UltravioletTime time)
         {
-            if (Ultraviolet.GetInput().GetKeyboard().IsKeyPressed(Key.Escape))
-            {
+            if (KeyboardDevice.IsKeyPressed(Key.Escape))
                 Exit();
-            }
             base.OnUpdating(time);
         }
 
         protected override void OnDrawing(UltravioletTime time)
         {
-            var window = Ultraviolet.GetPlatform().Windows.GetCurrent();
-            var position = new Vector2(window.ClientSize.Width / 2f, window.ClientSize.Height / 2f);
+            var position = new Vector2(Window.ClientSize.Width / 2f, Window.ClientSize.Height / 2f);
             var origin = new Vector2(_texture.Width / 2f, _texture.Height / 2f);
 
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);
@@ -80,9 +79,5 @@ namespace GameCore
             }
             base.Dispose(disposing);
         }
-
-        private ContentManager _contentManager;
-        private SpriteBatch _spriteBatch;
-        private Texture2D _texture;
     }
 }
