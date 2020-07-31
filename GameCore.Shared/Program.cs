@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using GameCore.Configuration;
+using GameCore.Input;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace GameCore
 {
@@ -14,8 +16,9 @@ namespace GameCore
         private static ServiceProvider BuildServiceProvider()
         {
             var serviceCollection = new ServiceCollection()
-                .AddTransient<IConfigurationManager, ConfigurationManager>()
-                .AddTransient<IGame, Game>();
+                .AddSingleton<IConfigurationManager, ConfigurationManager>()
+                .AddSingleton<IInputManager, InputManager>()
+                .AddSingleton<IGame, Game>();
 
             return serviceCollection.BuildServiceProvider();
         }

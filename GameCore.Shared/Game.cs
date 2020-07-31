@@ -1,12 +1,10 @@
 using System;
+using GameCore.Configuration;
+using GameCore.Input;
 using Ultraviolet;
-using Ultraviolet.BASS;
 using Ultraviolet.Content;
-using Ultraviolet.FreeType2;
 using Ultraviolet.Graphics;
 using Ultraviolet.Graphics.Graphics2D;
-using Ultraviolet.Input;
-using Ultraviolet.OpenGL;
 using Ultraviolet.Platform;
 
 namespace GameCore
@@ -19,20 +17,21 @@ namespace GameCore
     public class Game : UltravioletApplication, IGame
     {
         private readonly IConfigurationManager _configurationManager;
+        private readonly IInputManager _inputManager;
         private ContentManager _contentManager;
         private SpriteBatch _spriteBatch;
         private Texture2D _texture;
-        private KeyboardDevice KeyboardDevice => Ultraviolet.GetInput().GetKeyboard();
-        private IUltravioletWindow Window => Ultraviolet.GetPlatform().Windows.GetCurrent();
+        private IUltravioletWindow Window => _configurationManager.UltravioletContext.GetPlatform().Windows.GetCurrent();
 
-        public Game(IConfigurationManager configurationManager) : base("iLogical", "GameCore")
+        public Game(IConfigurationManager configurationManager, IInputManager inputManager) : base("iLogical", "GameCore")
         {
             _configurationManager = configurationManager;
+            _inputManager = inputManager;
         }
 
         protected override UltravioletContext OnCreatingUltravioletContext()
         {
-            return new OpenGLUltravioletContext(this, _configurationManager.BuildConfiguration());
+            return _configurationManager.BuildContext(this);
         }
 
         protected override void OnInitialized()
@@ -52,8 +51,7 @@ namespace GameCore
 
         protected override void OnUpdating(UltravioletTime time)
         {
-            if (KeyboardDevice.IsKeyPressed(Key.Escape))
-                Exit();
+            _inputManager.OnInputAction(InputAction.Exit, Exit);
             base.OnUpdating(time);
         }
 
