@@ -1,11 +1,11 @@
 using System;
 using GameCore.Configuration;
+using GameCore.Display;
 using GameCore.Input;
 using Ultraviolet;
 using Ultraviolet.Content;
 using Ultraviolet.Graphics;
 using Ultraviolet.Graphics.Graphics2D;
-using Ultraviolet.Platform;
 
 namespace GameCore
 {
@@ -18,15 +18,16 @@ namespace GameCore
     {
         private readonly IConfigurationManager _configurationManager;
         private readonly IInputManager _inputManager;
+        private readonly IWindowManager _windowManager;
         private ContentManager _contentManager;
         private SpriteBatch _spriteBatch;
         private Texture2D _texture;
-        private IUltravioletWindow Window => _configurationManager.UltravioletContext.GetPlatform().Windows.GetCurrent();
 
-        public Game(IConfigurationManager configurationManager, IInputManager inputManager) : base("iLogical", "GameCore")
+        public Game(IConfigurationManager configurationManager, IInputManager inputManager, IWindowManager windowManager) : base("iLogical", "GameCore")
         {
             _configurationManager = configurationManager;
             _inputManager = inputManager;
+            _windowManager = windowManager;
         }
 
         protected override UltravioletContext OnCreatingUltravioletContext()
@@ -57,7 +58,7 @@ namespace GameCore
 
         protected override void OnDrawing(UltravioletTime time)
         {
-            var position = new Vector2(Window.ClientSize.Width / 2f, Window.ClientSize.Height / 2f);
+            var position = new Vector2(_windowManager.CurrentWindow.Width / 2f, _windowManager.CurrentWindow.Height / 2f);
             var origin = new Vector2(_texture.Width / 2f, _texture.Height / 2f);
 
             _spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend);

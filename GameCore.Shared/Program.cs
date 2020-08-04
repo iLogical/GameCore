@@ -1,5 +1,7 @@
 ﻿using GameCore.Configuration;
+using GameCore.Display;
 using GameCore.Input;
+using GameCore.Platform;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GameCore
@@ -18,6 +20,8 @@ namespace GameCore
             var serviceCollection = new ServiceCollection()
                 .AddSingleton<IConfigurationManager, ConfigurationManager>()
                 .AddSingleton<IInputManager, InputManager>()
+                .AddSingleton<IPlatformManager, PlatformManager>()
+                .AddSingleton<IWindowManager, WindowManager>()
                 .AddSingleton<IGame, Game>();
 
             return serviceCollection.BuildServiceProvider();

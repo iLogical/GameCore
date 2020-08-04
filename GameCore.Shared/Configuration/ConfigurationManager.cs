@@ -18,7 +18,10 @@ namespace GameCore.Configuration
 
         public ConfigurationManager()
         {
-            _configuration = new OpenGLUltravioletConfiguration();
+            _configuration = new OpenGLUltravioletConfiguration
+            {
+                InitialWindowPosition = new Rectangle(Point2.Zero, new Size2(1280, 720)),
+            };
             _configuration.Plugins.Add(new BASSAudioPlugin());
             _configuration.Plugins.Add(new FreeTypeFontPlugin());
 
