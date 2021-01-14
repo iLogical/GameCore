@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using GameCore.Display;
 using GameCore.GameObjects;
 
 namespace GameCore.Rendering
@@ -13,10 +14,12 @@ namespace GameCore.Rendering
 
     public class Renderer : IRenderer
     {
+        private readonly IWindowManager _windowManager;
         private readonly Dictionary<SpriteBatch, List<GameObject>> _spriteBatches;
 
-        public Renderer()
+        public Renderer(IWindowManager windowManager)
         {
+            _windowManager = windowManager;
             _spriteBatches = new Dictionary<SpriteBatch, List<GameObject>>();
         }
 

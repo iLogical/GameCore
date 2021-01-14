@@ -10,16 +10,22 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\ConfigurationManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Content\ContentManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Display\WindowManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameObject\GameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameObject\Sprite.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\InputAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\InputManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)OneTimeAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Platform\PlatformManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Program.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\Renderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\SpriteBatch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scene\Scene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scene\SceneFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scene\SceneManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Content\desktop_uv256.png">

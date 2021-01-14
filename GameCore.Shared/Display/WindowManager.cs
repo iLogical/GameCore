@@ -23,13 +23,13 @@ namespace GameCore.Display
 
         private class WindowInfo : IWindowInfo
         {
-            public int Width { get; }
-            public int Height { get; }
+            private readonly IUltravioletWindow _ultravioletWindow;
+            public int Width => _ultravioletWindow?.ClientSize.Width ?? 0;
+            public int Height => _ultravioletWindow?.ClientSize.Height ?? 0;
 
             public WindowInfo(IUltravioletWindow window)
             {
-                Width = window.ClientSize.Width;
-                Height = window.ClientSize.Height;
+                _ultravioletWindow = window;
             }
         }
     }

@@ -1,5 +1,7 @@
 ﻿using GameCore.Configuration;
+using GameCore.Content;
 using GameCore.Display;
+using GameCore.GameObjects;
 using GameCore.Input;
 using GameCore.Platform;
 using GameCore.Rendering;
@@ -9,7 +11,7 @@ namespace GameCore
 {
     public static class Program
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
             var serviceProvider = BuildServiceProvider();
             using var game = serviceProvider.GetService<IGame>();
@@ -23,7 +25,10 @@ namespace GameCore
                 .AddSingleton<IInputManager, InputManager>()
                 .AddSingleton<IPlatformManager, PlatformManager>()
                 .AddSingleton<IWindowManager, WindowManager>()
+                .AddSingleton<IContentManager, ContentManager>()
                 .AddSingleton<IRenderer, Renderer>()
+                .AddSingleton<ISceneManager, SceneManager>()
+                .AddSingleton<ISceneFactory, SceneFactory>()
                 .AddSingleton<IGame, Game>();
 
             return serviceCollection.BuildServiceProvider();

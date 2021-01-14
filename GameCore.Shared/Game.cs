@@ -1,12 +1,12 @@
 using System;
 using GameCore.Configuration;
+using GameCore.Content;
+using GameCore.Display;
 using GameCore.GameObjects;
 using GameCore.Input;
 using GameCore.Rendering;
 using Ultraviolet;
-using Ultraviolet.Content;
-using Ultraviolet.Graphics;
-using Sprite = GameCore.GameObjects.Sprite;
+using ContentManager = Ultraviolet.Content.ContentManager;
 
 namespace GameCore
 {
@@ -19,15 +19,23 @@ namespace GameCore
     {
         private readonly IConfigurationManager _configurationManager;
         private readonly IInputManager _inputManager;
+        private readonly IWindowManager _windowManager;
+        private readonly IContentManager _contentManager;
         private readonly IRenderer _renderer;
-        private ContentManager _contentManager;
-        private SpriteBatch _spriteBatch;
+        private readonly ISceneManager _sceneManager;
+        private readonly ISceneFactory _sceneFactory;
+        private OneTimeAction _onReady;
 
-        public Game(IConfigurationManager configurationManager, IInputManager inputManager, IRenderer renderer) : base("iLogical", "GameCore")
+        public Game(IConfigurationManager configurationManager, IInputManager inputManager, IWindowManager windowManager, IContentManager contentManager, IRenderer renderer, ISceneManager sceneManager, ISceneFactory sceneFactory) : base("iLogical",
+            "GameCore")
         {
             _configurationManager = configurationManager;
             _inputManager = inputManager;
+            _windowManager = windowManager;
+            _contentManager = contentManager;
             _renderer = renderer;
+            _sceneManager = sceneManager;
+            _sceneFactory = sceneFactory;
         }
 
         protected override UltravioletContext OnCreatingUltravioletContext()
@@ -38,30 +46,33 @@ namespace GameCore
         protected override void OnInitialized()
         {
             UsePlatformSpecificFileSource();
-            
+
             base.OnInitialized();
         }
 
         protected override void OnLoadingContent()
         {
-            _contentManager = ContentManager.Create("Content");
-            _spriteBatch = new SpriteBatch();
-            _renderer.Add(_spriteBatch);
-
-            _renderer.Add(_spriteBatch, new GameObject(new Vector2(400, 300)).AddComponent(new Sprite(_contentManager.Load<Texture2D>("desktop_uv256"))));
-
+            _contentManager.Initialise(ContentManager.Create("Content"));
+            _onReady = OneTimeAction.From(LoadScene);
             base.OnLoadingContent();
         }
 
         protected override void OnUpdating(UltravioletTime time)
         {
             _inputManager.OnInputAction(InputAction.Exit, Exit);
-            
+
             base.OnUpdating(time);
+        }
+
+        private void LoadScene()
+        {
+            var scene = _sceneFactory.CreateScene("Test");
+            _sceneManager.LoadScene(scene);
         }
 
         protected override void OnDrawing(UltravioletTime time)
         {
+            _onReady.TryRun();
             _renderer.Draw();
             base.OnDrawing(time);
         }
@@ -71,7 +82,6 @@ namespace GameCore
             if (disposing)
             {
                 _contentManager?.Dispose();
-
                 _renderer?.Dispose();
             }
 
