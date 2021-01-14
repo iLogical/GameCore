@@ -2,6 +2,7 @@
 using GameCore.Display;
 using GameCore.Input;
 using GameCore.Platform;
+using GameCore.Rendering;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace GameCore
@@ -22,6 +23,7 @@ namespace GameCore
                 .AddSingleton<IInputManager, InputManager>()
                 .AddSingleton<IPlatformManager, PlatformManager>()
                 .AddSingleton<IWindowManager, WindowManager>()
+                .AddSingleton<IRenderer, Renderer>()
                 .AddSingleton<IGame, Game>();
 
             return serviceCollection.BuildServiceProvider();
