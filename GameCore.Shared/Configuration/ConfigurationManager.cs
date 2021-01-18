@@ -2,26 +2,28 @@
 using Ultraviolet.BASS;
 using Ultraviolet.FreeType2;
 using Ultraviolet.OpenGL;
+using Ultraviolet.SDL2;
 
 namespace GameCore.Configuration
 {
     public interface IConfigurationManager
     { 
-        OpenGLUltravioletContext UltravioletContext { get; }
+        SDL2UltravioletContext UltravioletContext { get; }
         UltravioletContext BuildContext(UltravioletApplication ultravioletApplication);
     }
 
     public class ConfigurationManager : IConfigurationManager
     {
-        public OpenGLUltravioletContext UltravioletContext { get; private set; }
-        private readonly OpenGLUltravioletConfiguration _configuration;
+        public SDL2UltravioletContext UltravioletContext { get; private set; }
+        private readonly SDL2UltravioletConfiguration _configuration;
 
         public ConfigurationManager()
         {
-            _configuration = new OpenGLUltravioletConfiguration
+            _configuration = new SDL2UltravioletConfiguration
             {
                 InitialWindowPosition = new Rectangle(Point2.Zero, new Size2(1280, 720)),
             };
+            _configuration.Plugins.Add(new OpenGLGraphicsPlugin());
             _configuration.Plugins.Add(new BASSAudioPlugin());
             _configuration.Plugins.Add(new FreeTypeFontPlugin());
 
@@ -32,7 +34,7 @@ namespace GameCore.Configuration
 
         public UltravioletContext BuildContext(UltravioletApplication ultravioletApplication)
         {
-            return UltravioletContext = new OpenGLUltravioletContext(ultravioletApplication, _configuration);
+            return UltravioletContext = new SDL2UltravioletContext(ultravioletApplication, _configuration);
         }
 
         private static void AddDebugConfig(UltravioletConfiguration configuration)

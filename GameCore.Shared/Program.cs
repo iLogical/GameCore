@@ -6,7 +6,6 @@ using GameCore.Input;
 using GameCore.Platform;
 using GameCore.Rendering;
 using Microsoft.Extensions.DependencyInjection;
-
 namespace GameCore
 {
     public static class Program

@@ -9,6 +9,7 @@
     <Import_RootNamespace>GameCore</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Assets\GlobalFontID.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Configuration\ConfigurationManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Content\ContentManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Display\WindowManager.cs" />
@@ -29,6 +30,17 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Content\desktop_uv256.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)Content\Fonts\SegoeUI12.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Fonts\SegoeUI12Texture.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="$(MSBuildThisFileDirectory)Content\Manifests\Global.manifest.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>

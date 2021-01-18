@@ -1,5 +1,6 @@
 ﻿using GameCore.Content;
 using GameCore.Rendering;
+using Sample16_CustomTextLayoutCommands.Assets;
 
 namespace GameCore.GameObjects
 {
@@ -27,6 +28,10 @@ namespace GameCore.GameObjects
                 gameObject.AddComponent(new Sprite(_contentManager.GetTexture2D(asset)));
                 _renderer.Add(scene.SpriteBatch, gameObject);
             }
+
+            var spriteFont = _contentManager.LoadSpriteFont(GlobalFontID.SegoeUI);
+            var textObject = new GameObject().AddComponent(new Text(spriteFont, "Text"));
+            _renderer.Add(scene.SpriteBatch, textObject);
         }
     }
 }

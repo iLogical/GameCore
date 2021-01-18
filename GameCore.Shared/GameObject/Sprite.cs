@@ -1,6 +1,7 @@
 ﻿using Ultraviolet;
 using Ultraviolet.Graphics;
 using Ultraviolet.Graphics.Graphics2D;
+using Ultraviolet.Graphics.Graphics2D.Text;
 
 namespace GameCore.GameObjects
 {
@@ -29,6 +30,30 @@ namespace GameCore.GameObjects
         public void OnRender(SpriteBatch spriteBatch, GameObject gameObject)
         {
             spriteBatch.Draw(_texture2D, gameObject.Position, _sourceRectangle, Color.White, gameObject.RotationRadians, _origin, gameObject.Scale, SpriteEffects.None, 0f);
+        }
+    }
+    
+    public class Text : IComponent
+    {
+        private readonly TextRenderer _textRenderer;
+        private readonly TextLayoutSettings _settings;
+        private readonly string _text;
+        
+        public Text(UltravioletFont spriteFont, string text)
+        {
+            _text = text;
+            _textRenderer = new TextRenderer();
+            _settings = new TextLayoutSettings(spriteFont, null, null, TextFlags.Standard);
+        }
+        
+        public void OnUpdate(UltravioletTime time)
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void OnRender(SpriteBatch spriteBatch, GameObject gameObject)
+        {
+            _textRenderer.Draw(spriteBatch, _text, gameObject.Position, Color.White, _settings);
         }
     }
 
