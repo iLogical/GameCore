@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using GameCore.Display;
 using Sample16_CustomTextLayoutCommands.Assets;
 using Ultraviolet;
-using Ultraviolet.Graphics;
-using Ultraviolet.Graphics.Graphics2D;
 using SpriteBatch = GameCore.Rendering.SpriteBatch;
 
 namespace GameCore.GameObjects
