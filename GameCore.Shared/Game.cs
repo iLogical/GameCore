@@ -1,7 +1,6 @@
 using System;
 using GameCore.Configuration;
 using GameCore.Content;
-using GameCore.Display;
 using GameCore.GameObjects;
 using GameCore.Input;
 using GameCore.Rendering;
@@ -19,19 +18,17 @@ namespace GameCore
     {
         private readonly IConfigurationManager _configurationManager;
         private readonly IInputManager _inputManager;
-        private readonly IWindowManager _windowManager;
         private readonly IContentManager _contentManager;
         private readonly IRenderer _renderer;
         private readonly ISceneManager _sceneManager;
         private readonly ISceneFactory _sceneFactory;
         private OneTimeAction _onReady;
 
-        public Game(IConfigurationManager configurationManager, IInputManager inputManager, IWindowManager windowManager, IContentManager contentManager, IRenderer renderer, ISceneManager sceneManager, ISceneFactory sceneFactory) : base("iLogical",
+        public Game(IConfigurationManager configurationManager, IInputManager inputManager, IContentManager contentManager, IRenderer renderer, ISceneManager sceneManager, ISceneFactory sceneFactory) : base("iLogical",
             "GameCore")
         {
             _configurationManager = configurationManager;
             _inputManager = inputManager;
-            _windowManager = windowManager;
             _contentManager = contentManager;
             _renderer = renderer;
             _sceneManager = sceneManager;

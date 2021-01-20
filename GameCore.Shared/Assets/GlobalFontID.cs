@@ -2,8 +2,8 @@
 
 namespace Sample16_CustomTextLayoutCommands.Assets
 {
-    public static class GlobalFontID
+    public static class GlobalFontId
     {
-        public static AssetID SegoeUI;
+        public static AssetID SegoeUi;
     }
 }

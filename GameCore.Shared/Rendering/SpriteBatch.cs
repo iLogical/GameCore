@@ -25,6 +25,7 @@ namespace GameCore.Rendering
         public void Dispose()
         {
             _ultravioletSpriteBatch?.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

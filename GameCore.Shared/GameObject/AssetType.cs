@@ -1,6 +1,9 @@
-﻿public enum AssetType
+﻿namespace GameCore.GameObjects
 {
-    Unknown,
-    Texture2D,
-    SpriteFont
+    public enum AssetType
+    {
+        Unknown,
+        Texture2D,
+        SpriteFont
+    }
 }

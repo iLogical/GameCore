@@ -45,7 +45,7 @@ namespace GameCore.Content
             var contentManifestFiles = contentManager.GetAssetFilePathsInDirectory("Manifests");
             var contentManifestRegistry = contentManager.Ultraviolet.GetContent().Manifests;
             contentManifestRegistry.Load(contentManifestFiles);
-            contentManifestRegistry["Global"]["Fonts"].PopulateAssetLibrary(typeof(GlobalFontID));
+            contentManifestRegistry["Global"]["Fonts"].PopulateAssetLibrary(typeof(GlobalFontId));
         }
 
         public Texture2D LoadTexture2D(string asset, bool persistant = false)
@@ -104,6 +104,7 @@ namespace GameCore.Content
             _temporaryTextureCache.Clear();
             _permanentTextureCache.Clear();
             _contentManager?.Dispose();
+            GC.SuppressFinalize(this);
         }
     }
 }

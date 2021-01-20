@@ -15,26 +15,31 @@ namespace GameCore.Configuration
     public class ConfigurationManager : IConfigurationManager
     {
         public SDL2UltravioletContext UltravioletContext { get; private set; }
-        private readonly SDL2UltravioletConfiguration _configuration;
 
         public ConfigurationManager()
         {
-            _configuration = new SDL2UltravioletConfiguration
+            SetConfiguration();
+        }
+
+        private static SDL2UltravioletConfiguration SetConfiguration()
+        {
+            var configuration = new SDL2UltravioletConfiguration
             {
                 InitialWindowPosition = new Rectangle(Point2.Zero, new Size2(1280, 720)),
             };
-            _configuration.Plugins.Add(new OpenGLGraphicsPlugin());
-            _configuration.Plugins.Add(new BASSAudioPlugin());
-            _configuration.Plugins.Add(new FreeTypeFontPlugin());
+            configuration.Plugins.Add(new OpenGLGraphicsPlugin());
+            configuration.Plugins.Add(new BASSAudioPlugin());
+            configuration.Plugins.Add(new FreeTypeFontPlugin());
 
 #if DEBUG
-            AddDebugConfig(_configuration);
+            AddDebugConfig(configuration);
 #endif
+            return configuration;
         }
 
         public UltravioletContext BuildContext(UltravioletApplication ultravioletApplication)
         {
-            return UltravioletContext = new SDL2UltravioletContext(ultravioletApplication, _configuration);
+            return UltravioletContext = new SDL2UltravioletContext(ultravioletApplication, SetConfiguration());
         }
 
         private static void AddDebugConfig(UltravioletConfiguration configuration)

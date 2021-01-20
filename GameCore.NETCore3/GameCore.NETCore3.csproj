@@ -2,12 +2,13 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFramework>net5.0</TargetFramework>
     <ApplicationIcon />
     <StartupObject />
     <RootNamespace>GameCore</RootNamespace>
     <AssemblyName>GameCore</AssemblyName>
-    <LangVersion>9</LangVersion>
+    <LangVersion>default</LangVersion>
+    <Nullable>disable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -18,6 +19,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.1" />
+    <PackageReference Include="protobuf-net" Version="3.0.73" />
     <PackageReference Include="Ultraviolet" Version="2020.12.0.4543" />
     <PackageReference Include="Ultraviolet.BASS" Version="2020.12.0.4543" />
     <PackageReference Include="Ultraviolet.FreeType2" Version="2020.12.0.4543" />

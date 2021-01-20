@@ -32,6 +32,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Scene\SceneAsset.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scene\SceneFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scene\SceneManager.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Storage\ProtobufStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)Content\desktop_uv256.png">

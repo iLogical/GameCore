@@ -24,7 +24,7 @@ namespace GameCore.GameObjects
             Assets = new HashSet<SceneAsset>
             {
                 SceneAsset.For("Logo", AssetType.Texture2D, "desktop_uv256", windowManager.CurrentWindow.Center()),
-                SceneAsset.For("PlaceholderText", AssetType.SpriteFont, GlobalFontID.SegoeUI.ToString(), Vector2.Zero)
+                SceneAsset.For("PlaceholderText", AssetType.SpriteFont, GlobalFontId.SegoeUi.ToString(), Vector2.Zero)
             };
         }
     }
