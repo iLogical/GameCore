@@ -29,6 +29,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Scene\ComponentFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scene\GameObjectFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scene\Scene.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scene\SceneAsset.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scene\SceneFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scene\SceneManager.cs" />
   </ItemGroup>
