@@ -14,7 +14,7 @@ namespace GameCore
         {
             var serviceProvider = BuildServiceProvider();
             using var game = serviceProvider.GetService<IGame>();
-            game.Run();
+            game?.Run();
         }
 
         private static ServiceProvider BuildServiceProvider()
@@ -25,6 +25,7 @@ namespace GameCore
                 .AddSingleton<IPlatformManager, PlatformManager>()
                 .AddSingleton<IWindowManager, WindowManager>()
                 .AddSingleton<IContentManager, ContentManager>()
+                .AddSingleton<IComponentFactory, ComponentFactory>()
                 .AddSingleton<IRenderer, Renderer>()
                 .AddSingleton<ISceneManager, SceneManager>()
                 .AddSingleton<ISceneFactory, SceneFactory>()

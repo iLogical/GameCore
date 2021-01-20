@@ -1,6 +1,5 @@
 ﻿using GameCore.Content;
 using GameCore.Rendering;
-using Sample16_CustomTextLayoutCommands.Assets;
 
 namespace GameCore.GameObjects
 {
@@ -13,11 +12,13 @@ namespace GameCore.GameObjects
     {
         private readonly IContentManager _contentManager;
         private readonly IRenderer _renderer;
+        private readonly IComponentFactory _componentFactory;
 
-        public SceneManager(IContentManager contentManager, IRenderer renderer)
+        public SceneManager(IContentManager contentManager, IComponentFactory componentFactory, IRenderer renderer)
         {
             _contentManager = contentManager;
             _renderer = renderer;
+            _componentFactory = componentFactory;
         }
 
         public void LoadScene(IScene scene)
@@ -25,13 +26,11 @@ namespace GameCore.GameObjects
             _contentManager.Purge();
             foreach (var (asset, gameObject) in scene.Assets)
             {
-                gameObject.AddComponent(new Sprite(_contentManager.GetTexture2D(asset)));
+                var component = _componentFactory.FromAsset(asset);
+                if (component.IsNotNull())
+                    gameObject.AddComponent(component);
                 _renderer.Add(scene.SpriteBatch, gameObject);
             }
-
-            var spriteFont = _contentManager.LoadSpriteFont(GlobalFontID.SegoeUI);
-            var textObject = new GameObject().AddComponent(new Text(spriteFont, "Text"));
-            _renderer.Add(scene.SpriteBatch, textObject);
         }
     }
 }

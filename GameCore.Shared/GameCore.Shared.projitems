@@ -15,8 +15,10 @@
     <Compile Include="$(MSBuildThisFileDirectory)Display\WindowManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Extensions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Game.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameObject\AssetType.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameObject\GameObject.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)GameObject\Sprite.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)GameObject\Text.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\InputAction.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Input\InputManager.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)OneTimeAction.cs" />
@@ -24,6 +26,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Program.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\Renderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\SpriteBatch.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scene\ComponentFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scene\Scene.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scene\SceneFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scene\SceneManager.cs" />
