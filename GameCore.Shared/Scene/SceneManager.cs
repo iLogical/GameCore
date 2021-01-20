@@ -12,25 +12,20 @@ namespace GameCore.GameObjects
     {
         private readonly IContentManager _contentManager;
         private readonly IRenderer _renderer;
-        private readonly IComponentFactory _componentFactory;
+        private readonly IGameObjectFactory _gameObjectFactory;
 
-        public SceneManager(IContentManager contentManager, IComponentFactory componentFactory, IRenderer renderer)
+        public SceneManager(IContentManager contentManager, IGameObjectFactory gameObjectFactory, IRenderer renderer)
         {
             _contentManager = contentManager;
             _renderer = renderer;
-            _componentFactory = componentFactory;
+            _gameObjectFactory = gameObjectFactory;
         }
 
         public void LoadScene(IScene scene)
         {
             _contentManager.Purge();
-            foreach (var (asset, gameObject) in scene.Assets)
-            {
-                var component = _componentFactory.FromAsset(asset);
-                if (component.IsNotNull())
-                    gameObject.AddComponent(component);
-                _renderer.Add(scene.SpriteBatch, gameObject);
-            }
+            foreach (var asset in scene.Assets)
+                _renderer.Add(scene.SpriteBatch, _gameObjectFactory.FromAsset(asset));
         }
     }
 }

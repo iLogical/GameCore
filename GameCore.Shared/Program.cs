@@ -26,6 +26,7 @@ namespace GameCore
                 .AddSingleton<IWindowManager, WindowManager>()
                 .AddSingleton<IContentManager, ContentManager>()
                 .AddSingleton<IComponentFactory, ComponentFactory>()
+                .AddSingleton<IGameObjectFactory, GameObjectFactory>()
                 .AddSingleton<IRenderer, Renderer>()
                 .AddSingleton<ISceneManager, SceneManager>()
                 .AddSingleton<ISceneFactory, SceneFactory>()

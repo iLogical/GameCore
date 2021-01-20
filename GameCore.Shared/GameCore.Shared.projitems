@@ -27,6 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\Renderer.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Rendering\SpriteBatch.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scene\ComponentFactory.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Scene\GameObjectFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scene\Scene.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scene\SceneFactory.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Scene\SceneManager.cs" />

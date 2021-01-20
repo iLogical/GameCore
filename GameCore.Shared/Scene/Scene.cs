@@ -12,22 +12,22 @@ namespace GameCore.GameObjects
     public interface IScene
     {
         SpriteBatch SpriteBatch { get; }
-        Dictionary<SceneAsset, GameObject> Assets { get; }
+        HashSet<SceneAsset> Assets { get; }
     }
 
     public class Scene : IScene
     {
         public SpriteBatch SpriteBatch { get; }
-        public Dictionary<SceneAsset, GameObject> Assets { get; }
+        public HashSet<SceneAsset> Assets { get; }
 
 
         public Scene(IWindowManager windowManager)
         {
             SpriteBatch = new SpriteBatch();
-            Assets = new Dictionary<SceneAsset, GameObject>
+            Assets = new HashSet<SceneAsset>
             {
-                [SceneAsset.For(AssetType.Texture2D, "Logo", "desktop_uv256")] = new GameObject(windowManager.CurrentWindow.Center()),
-                [SceneAsset.For(AssetType.SpriteFont, "PlaceholderText", GlobalFontID.SegoeUI.ToString())] = new(Vector2.Zero)
+                SceneAsset.For("Logo", AssetType.Texture2D, "desktop_uv256", windowManager.CurrentWindow.Center()),
+                SceneAsset.For("PlaceholderText", AssetType.SpriteFont, GlobalFontID.SegoeUI.ToString(), Vector2.Zero)
             };
         }
     }
@@ -37,17 +37,19 @@ namespace GameCore.GameObjects
         public AssetType Type { get; }
         public string Name { get; }
         public string Resource { get; }
+        public Vector2 Position { get; }
 
-        public static SceneAsset For(AssetType type, string name, string resource)
+        public static SceneAsset For(string name, AssetType type, string resource, Vector2 position)
         {
-            return new(type, name, resource);
+            return new(name, type, resource, position);
         }
 
-        private SceneAsset(AssetType type, string name, string resource)
+        private SceneAsset(string name, AssetType type, string resource, Vector2 position)
         {
             Type = type;
             Name = name;
             Resource = resource;
+            Position = position;
         }
     }
 }
