@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Sample16_CustomTextLayoutCommands.Assets;
+using GameCore.Assets;
 using Ultraviolet.Content;
 using Ultraviolet.Graphics;
 using Ultraviolet.Graphics.Graphics2D;

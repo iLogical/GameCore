@@ -1,9 +1,10 @@
 ﻿using Ultraviolet.Content;
 
-namespace Sample16_CustomTextLayoutCommands.Assets
+namespace GameCore.Assets
 {
     public static class GlobalFontId
     {
-        public static AssetID SegoeUi;
+        // ReSharper disable once InconsistentNaming
+        public static AssetID SegoeUI;
     }
 }

@@ -1,5 +1,4 @@
-﻿using System;
-using GameCore.Configuration;
+﻿using GameCore.Configuration;
 using GameCore.Content;
 using GameCore.Display;
 using GameCore.GameObjects;
